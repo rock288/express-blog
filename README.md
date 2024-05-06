@@ -1,12 +1,13 @@
-* Hi Im Rock288
+# Hi Im Rock288
 
 This is my repo BE with express nodejs
 
-** Install package
+## Install package
 `
 yarn
 `
-** Run development
+
+## Run development
 `
 yarn dev
 `
