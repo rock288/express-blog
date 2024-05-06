@@ -13,6 +13,10 @@ const articleSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+
+    // auth
+
+    // category . Reactjs javacript
   },
   {
     timestamps: true,

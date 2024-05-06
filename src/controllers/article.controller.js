@@ -6,7 +6,11 @@ const { articleService } = require('../services');
 
 const createArticle = catchAsync(async (req, res) => {
   const article = await articleService.createArticle(req.body);
-  res.status(httpStatus.CREATED).send(article);
+  res.status(httpStatus.CREATED).send({
+    code: httpStatus.CREATED,
+    message: 'success',
+    payload: article
+  });
 });
 
 const getArticles = catchAsync(async (req, res) => {
