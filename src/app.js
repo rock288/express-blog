@@ -5,6 +5,8 @@ const compression = require('compression');
 const passport = require('passport');
 const routes = require('./routes/v1');
 const { jwtStrategy } = require('./config/passport');
+const xss = require('xss-clean');
+const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 require('./config/db.connect');
 const app = express();
@@ -17,6 +19,13 @@ app.use(compression()); // nen payload
 
 // init routes
 app.use('/v1', routes);
+
+// parse urlencoded request body
+app.use(express.urlencoded({ extended: true }));
+
+// sanitize request data
+app.use(xss());
+app.use(mongoSanitize());
 
 // enable cors
 app.use(cors());
