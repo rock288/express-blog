@@ -3,21 +3,20 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { articleService } = require('../services');
+const { OK } = require('../utils/ApiSuccess');
 
 const createArticle = catchAsync(async (req, res) => {
   const article = await articleService.createArticle(req.body);
-  res.status(httpStatus.CREATED).send({
-    code: httpStatus.CREATED,
-    message: 'success',
-    payload: article
-  });
+
+  OK(res, 'success', article);
 });
 
 const getArticles = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  options.populate = 'category';
   const result = await articleService.queryArticles(filter, options);
-  res.send(result);
+  OK(res, 'success', result);
 });
 
 const getArticle = catchAsync(async (req, res) => {
@@ -25,19 +24,17 @@ const getArticle = catchAsync(async (req, res) => {
   if (!article) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Article not found');
   }
-  res.send(article);
+  OK(res, 'success', article);
 });
 
 const updateArticle = catchAsync(async (req, res) => {
   const article = await articleService.updateArticleById(req.params.articleId, req.body);
-  res.send(article);
+  OK(res, 'success', article);
 });
 
 const deleteArticle = catchAsync(async (req, res) => {
   await articleService.deleteArticleById(req.params.articleId);
-  res.status(httpStatus.OK).send({
-    message: 'success'
-  });
+  OK(res, 'success');
 });
 
 module.exports = {

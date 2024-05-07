@@ -31,7 +31,11 @@ const queryArticles = async (filter, options) => {
  * @returns {Promise<Article>}
  */
 const getArticleById = async (id) => {
-  return Article.findById(id);
+  return Article.findById(id).populate([
+    {
+      path: 'category',
+    },
+  ]);
 };
 
 /**
@@ -59,7 +63,7 @@ const updateArticleById = async (articleId, updateBody) => {
  * @returns {Promise<Article>}
  */
 const deleteArticleById = async (articleId) => {
-  const article = await Article.findOneAndDelete({ _id: articleId});
+  const article = await Article.findOneAndDelete({ _id: articleId });
   if (!article) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Article not found');
   }
