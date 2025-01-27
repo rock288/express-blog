@@ -17,4 +17,6 @@ router
   .get(articleController.getArticle)
   .put(auth(), validate(articleValidation.updateArticle), articleController.updateArticle);
 
+router.route('/href/:articleHref').get(articleController.getArticleByHref);
+
 module.exports = router;

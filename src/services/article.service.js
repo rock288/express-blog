@@ -41,6 +41,19 @@ const getArticleById = async (id) => {
 };
 
 /**
+ * Get article by id
+ * @param {ObjectId} id
+ * @returns {Promise<Article>}
+ */
+const getArticleByHref = async (href) => {
+  return Article.findOne({ href }).populate([
+    {
+      path: 'category',
+    },
+  ]);
+};
+
+/**
  * Update article by id
  * @param {ObjectId} articleId
  * @param {Object} updateBody
@@ -79,4 +92,5 @@ module.exports = {
   getArticleById,
   updateArticleById,
   deleteArticleById,
+  getArticleByHref,
 };

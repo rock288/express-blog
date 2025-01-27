@@ -40,6 +40,8 @@ const articleSchema = mongoose.Schema(
 articleSchema.plugin(toJSON);
 articleSchema.plugin(paginate);
 
+articleSchema.index({ href: 1 });
+
 /**
  * @typedef Article
  */

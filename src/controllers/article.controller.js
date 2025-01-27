@@ -27,6 +27,14 @@ const getArticle = catchAsync(async (req, res) => {
   OK(res, 'success', article);
 });
 
+const getArticleByHref = catchAsync(async (req, res) => {
+  const article = await articleService.getArticleByHref(req.params.articleHref);
+  if (!article) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Article not found');
+  }
+  OK(res, 'success', article);
+});
+
 const updateArticle = catchAsync(async (req, res) => {
   const article = await articleService.updateArticleById(req.params.articleId, req.body);
   OK(res, 'success', article);
@@ -43,4 +51,5 @@ module.exports = {
   getArticle,
   updateArticle,
   deleteArticle,
+  getArticleByHref,
 };
