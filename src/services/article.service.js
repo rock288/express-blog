@@ -1,6 +1,7 @@
 const httpStatus = require('http-status');
 const { Article } = require('../models');
 const ApiError = require('../utils/ApiError');
+const { convertTitleToHref } = require('../utils/common');
 
 /**
  * Create a article
@@ -8,6 +9,7 @@ const ApiError = require('../utils/ApiError');
  * @returns {Promise<Article>}
  */
 const createArticle = async (articleBody) => {
+  articleBody.href = convertTitleToHref(articleBody.title);
   return Article.create(articleBody);
 };
 

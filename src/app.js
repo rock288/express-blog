@@ -17,9 +17,6 @@ app.use(morgan('dev')); // log
 app.use(helmet()); // hide data
 app.use(compression()); // nen payload
 
-// init routes
-app.use('/v1', routes);
-
 // parse urlencoded request body
 app.use(express.urlencoded({ extended: true }));
 
@@ -34,6 +31,9 @@ app.options('*', cors());
 // jwt authentication
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
+
+// init routes
+app.use('/v1', routes);
 
 // handling error
 app.get('/', (req, res, next) => {
