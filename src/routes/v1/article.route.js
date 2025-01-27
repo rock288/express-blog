@@ -13,8 +13,8 @@ router
 
 router
   .route('/:articleId')
-  .delete(auth(), validate(articleValidation.createArticle), articleController.deleteArticle)
+  .delete(auth(), validate(articleValidation.deleteArticle), articleController.deleteArticle)
   .get(articleController.getArticle)
-  .put(auth(), validate(articleValidation.createArticle), articleController.updateArticle);
+  .put(auth(), validate(articleValidation.updateArticle), articleController.updateArticle);
 
 module.exports = router;
