@@ -44,11 +44,12 @@ const paginate = (schema) => {
 
     if (options.populate) {
       options.populate.split(',').forEach((populateOption) => {
+        // chua co populate nested
         docsPromise = docsPromise.populate(
           populateOption
             .split('.')
             .reverse()
-            .reduce((a, b) => ({ path: b, populate: a })),
+            .reduce((a, b) => ({ path: b, select: a })),
         );
       });
     }

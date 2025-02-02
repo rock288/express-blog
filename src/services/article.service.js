@@ -50,7 +50,7 @@ const getArticleById = async (id) => {
  * @returns {Promise<Article>}
  */
 const getArticleByHref = async (href) => {
-  return Article.findOne({ href }).populate([
+  return Article.findOne({ href, isShow: true }).populate([
     {
       path: 'category',
     },
