@@ -37,6 +37,10 @@ const getArticleById = async (id) => {
     {
       path: 'category',
     },
+    {
+      path: 'user',
+      select: 'id name',
+    },
   ]);
 };
 
@@ -49,6 +53,10 @@ const getArticleByHref = async (href) => {
   return Article.findOne({ href }).populate([
     {
       path: 'category',
+    },
+    {
+      path: 'user',
+      select: 'id name',
     },
   ]);
 };

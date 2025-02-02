@@ -18,6 +18,11 @@ const articleSchema = mongoose.Schema(
       required: true,
       trim: true,
     },
+    isShow: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
     // auth
     user: {
       type: mongoose.Schema.Types.ObjectId,
