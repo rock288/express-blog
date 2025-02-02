@@ -12,6 +12,7 @@ const articleSchema = mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      unique: true,
     },
     content: {
       type: String,
