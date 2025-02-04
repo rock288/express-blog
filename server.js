@@ -7,6 +7,13 @@ const server = app.listen(PORT, () => {
   console.log(`Welcome Blog start with port: ${PORT}`);
 });
 
-process.on('SIGINT', () => {
-  server.close(() => console.log(`Exit server`));
-});
+const shutdown = () => {
+  console.log('Shutting down server...');
+  server.close(() => {
+    console.log('Server closed');
+    process.exit(0); // Đảm bảo tiến trình thoát hoàn toàn
+  });
+};
+
+process.on('SIGINT', shutdown);
+process.on('SIGTERM', shutdown);
