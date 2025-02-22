@@ -4,6 +4,7 @@ const { objectId } = require('./custom.validation');
 const createArticle = {
   body: Joi.object().keys({
     title: Joi.string().required(),
+    description: Joi.string().required(),
     content: Joi.string().required(),
     image: Joi.string(),
     user: Joi.string().custom(objectId).required(),
