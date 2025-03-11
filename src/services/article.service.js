@@ -72,9 +72,6 @@ const updateArticleById = async (articleId, updateBody) => {
   if (!article) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Article not found');
   }
-  if (updateBody.email && (await Article.isEmailTaken(updateBody.email, articleId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-  }
   Object.assign(article, updateBody);
   await article.save();
   return article;

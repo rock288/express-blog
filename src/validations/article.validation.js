@@ -38,6 +38,8 @@ const updateArticle = {
       content: Joi.string().required(),
       user: Joi.string().custom(objectId).required(),
       category: Joi.string().custom(objectId).required(),
+      image: Joi.string().custom(objectId).required(),
+      description: Joi.string().custom(objectId).required(),
     })
     .min(1),
 };
