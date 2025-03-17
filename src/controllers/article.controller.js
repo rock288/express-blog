@@ -15,6 +15,7 @@ const getArticles = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name', 'role']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   options.populate = 'category.name,user.name';
+  options.sortBy = 'createdAt:desc';
   const result = await articleService.queryArticles(filter, options);
   OK(res, 'success', result);
 });
