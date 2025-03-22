@@ -35,6 +35,9 @@ passport.use('jwt', jwtStrategy);
 // init routes
 app.use('/v1', routes);
 
+// static file
+app.use('/uploads', express.static('uploads'));
+
 // handling error
 app.get('/', (req, res, next) => {
   return res.status(200).json({

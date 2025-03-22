@@ -11,7 +11,7 @@ const shutdown = () => {
   console.log('Shutting down server...');
   server.close(() => {
     console.log('Server closed');
-    process.exit(0); // Đảm bảo tiến trình thoát hoàn toàn
+    process.exit(0);
   });
 };
 
