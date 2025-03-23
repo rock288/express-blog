@@ -12,7 +12,7 @@ const createUpload = catchAsync(async (req, res) => {
 
 const getUploads = catchAsync(async (req, res) => {
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await uploadService.queryUploads(filter, options);
+  const result = await uploadService.queryUploads({}, options);
   OK(res, 'success', result);
 });
 
